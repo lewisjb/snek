@@ -20,6 +20,7 @@
        01 VIS-BLANK pic x(1) value ".".
 
        01 input-char pic 9(8) usage is comp.
+       01 old-direction pic 9(1) value 3.
        01 cur-direction pic 9(1) value 3.
 
       *> The snake, board is 10x10, max-length is 100
@@ -74,15 +75,22 @@
 
        input-para.
            call "getch" returning input-char.
+
+           move cur-direction to old-direction.
+
            evaluate true
-               when input-char = ASCII-W
+               when input-char = ASCII-W and not old-direction =
+                     DIR-DOWN
                    move DIR-UP to cur-direction
-               when input-char = ASCII-A
+               when input-char = ASCII-A and not old-direction =
+                     DIR-RIGHT
                    move DIR-LEFT to cur-direction
-               when input-char = ASCII-S
-                     move DIR-DOWN to cur-direction
-               when input-char = ASCII-D
-                     move DIR-RIGHT to cur-direction
+               when input-char = ASCII-S and not old-direction =
+                     DIR-UP
+                   move DIR-DOWN to cur-direction
+               when input-char = ASCII-D and not old-direction =
+                     DIR-LEFT
+                   move DIR-RIGHT to cur-direction
            end-evaluate.
 
        create-food.
