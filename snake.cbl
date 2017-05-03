@@ -66,6 +66,7 @@
 
        game-over.
            call "endwin".
+           display "Game over man, GAME OVER! Score: "snake-len.
            stop run.
 
        game-loop.
@@ -118,6 +119,7 @@
 
        draw.
            call "printw" using game-screen.
+           call "printw" using "Score: %d", by value snake-len.
 
        shift-snake.
            compute snake-x(snake-index) = snake-x(snake-index - 1).
