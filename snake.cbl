@@ -48,11 +48,15 @@
        01 create-more-food pic 9(1) value 1.
        01 snake-grew pic 9(1) value 1.
 
+      *> To limit FPS
+       01 ms-count pic 9(3) usage is comp.
+       01 ms-move-time pic 9(3) usage is comp value 350.
+
        procedure division.
        main-para.
            call "initscr".
            call "noecho".
-           call "timeout" using 0.
+           call "timeout" using by value 0.
 
            move VIS-SNAKE to screen-pixel(1, 1).
            move 1 to snake-x(1), snake-y(1).
@@ -68,10 +72,18 @@
            if create-more-food = 1 then
                  perform create-food
            end-if.
+
+           call "clear".
            perform draw.
            perform input-para.
-           perform handle-move.
-           call "clear".
+
+           if ms-count > ms-move-time then
+                 perform handle-move
+                 move 0 to ms-count
+           end-if.
+
+           call "usleep" using by value 1.
+           add 1 to ms-count.
 
        input-para.
            call "getch" returning input-char.
