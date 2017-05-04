@@ -89,8 +89,6 @@
        input-para.
            call "getch" returning input-char.
 
-           move cur-direction to old-direction.
-
            evaluate true
                when input-char = ASCII-W and not old-direction =
                      DIR-DOWN
@@ -156,6 +154,8 @@
            move next-snake-x to snake-x(1).
            move next-snake-y to snake-y(1).
            
+           move cur-direction to old-direction.
+
        get-next-pos.
            move snake-x(1) to next-snake-x.
            move snake-y(1) to next-snake-y.
