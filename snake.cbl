@@ -4,11 +4,11 @@
        data division.
        working-storage section.
       *>Constant ASCII codes
-       01 ASCII-W pic 9(1) usage is comp value 119.
-       01 ASCII-A pic 9(1) usage is comp value 97.
-       01 ASCII-S pic 9(1) usage is comp value 115.
-       01 ASCII-D pic 9(1) usage is comp value 100.
-       01 ASCII-Q pic 9(1) usage is comp value 113.
+       01 ASCII-W pic 9(3) usage is comp value 119.
+       01 ASCII-A pic 9(2) usage is comp value 97.
+       01 ASCII-S pic 9(3) usage is comp value 115.
+       01 ASCII-D pic 9(3) usage is comp value 100.
+       01 ASCII-Q pic 9(3) usage is comp value 113.
       *>Constant codes for cur-direction
        01 DIR-UP pic 9(1) value 1.
        01 DIR-LEFT pic 9(1) value 2.
@@ -41,7 +41,7 @@
              05 screen-row occurs 10 times.
              10 screen-pixel pic x(1) value '.' occurs 10 times.
       *> Puts a newline after each row for printing
-             10 screen-nl pic 9(1) usage is comp value 10.
+             10 screen-nl pic 9(2) usage is comp value 10.
       *> Puts a null after at the end for printing
              05 screen-null pic 9(1) usage is comp value 0.
 
